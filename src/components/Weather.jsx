@@ -3,25 +3,40 @@ import { useState } from 'react'
 
 export default function Weather({ city, weather }) {
   const [input, setInput] = useState("")
+  const decimalPoint = 1;
+
+  const weatherMapping = {
+    Clear: { label: 'Céu aberto', backgroundColor: '#EEDD82' },
+    Clouds: { label: 'Nublado', backgroundColor: 'gray' },
+    Rain: { label: 'Chovendo', backgroundColor: '#0000CD' },
+    Snow: { label: 'Nevando', backgroundColor: 'lightgray' },
+    Thunderstorm: { label: 'Tempestade', backgroundColor: 'purple' },
+    Drizzle: { label: 'Chuviscando', backgroundColor: 'lightblue' },
+    Mist: { label: 'Neblina', backgroundColor: 'lightgray' },
+  };
+  const weatherCondition = weather?.weather[0].main;
+  const conditionInfo = weatherMapping[weatherCondition] || {
+    label: 'Desconhecido',
+    backgroundColor: 'white',
+  };
 
   return (
-    <WeatherContainer>
+    <WeatherContainer style={{ backgroundColor: conditionInfo.backgroundColor }}>
       {console.log('weather', weather)}
       <LeftContainer>
         <h1>Agora: {`${weather?.name}`}</h1>
-        <h2>Mínima: {`${weather?.main.temp_min}°C`}</h2>
-        <h2>Máxima: {`${weather?.main.temp_max}°C`}</h2>
+        <h2>Mínima: {`${weather?.main.temp_min.toFixed(decimalPoint)}°C`}</h2>
+        <h2>Máxima: {`${weather?.main.temp_max.toFixed(decimalPoint)}°C`}</h2>
       </LeftContainer>
       <RightContainer>
-        <h2>{`${weather?.weather[0].main}`}</h2>
-        <h1>{`${weather?.main.temp}°C`}</h1>
+        <h2>{`${conditionInfo.label}`}</h2>
+        <h1>{`${weather?.main.temp.toFixed(decimalPoint)}°C`}</h1>
       </RightContainer>
     </WeatherContainer>     
   )
 }
 
 const WeatherContainer = styled.div`
-  background-color: lightblue;
   height: 100px;
   width: 50%;
   margin-top: 25px;
@@ -29,13 +44,13 @@ const WeatherContainer = styled.div`
   border-radius: 15px;
   padding: 10px 15px;
   display: flex;
-  color: white
+  color: white;
+  font-weight: bold;
 `
 const LeftContainer = styled.div`
   height: 100%;
   width: 50%;
   min-width: 180px;
-  /* background-color: lightcoral; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,14 +59,14 @@ const LeftContainer = styled.div`
     margin-bottom: 10px;
   }
   h2{
-    font-size: 12px;
+    font-size: 14px;
+    margin-bottom: 2px;
   }
 `
 const RightContainer = styled.div`
   height: 100%;
   width: 50%;
   min-width: 180px;
-  /* background-color: lightgoldenrodyellow; */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react'
 import axios from 'axios';
 
-export default function Search({ city, setCity, setWeather }) {
+export default function Search({ city, setCity, setWeather, setForecast }) {
   const [inputCity, setInputCity] = useState()
   
-
   function submit(event) {
     console.log('clique: ', inputCity)
     event.preventDefault();
@@ -17,6 +16,12 @@ export default function Search({ city, setCity, setWeather }) {
         setWeather(res.data)
       })
       .catch((err) => alert("error"))
+    // axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}&units=metric`)
+    //   .then((res) => {
+    //     console.log(res.data)
+    //     setForecast(res.data)
+    //   })
+    //   .catch((err) => console.log("error", err.message))
     console.log('clique2: ', city)
   }
 
