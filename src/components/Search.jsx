@@ -16,12 +16,12 @@ export default function Search({ city, setCity, setWeather, setForecast }) {
         setWeather(res.data)
       })
       .catch((err) => alert("error"))
-    // axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}&units=metric`)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setForecast(res.data)
-    //   })
-    //   .catch((err) => console.log("error", err.message))
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}&units=metric`)
+      .then((res) => {
+        console.log("forcast",res.data)
+        setForecast(res.data)
+      })
+      .catch((err) => console.log("error", err.message))
     console.log('clique2: ', city)
   }
 
