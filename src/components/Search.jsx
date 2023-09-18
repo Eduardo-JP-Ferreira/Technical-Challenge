@@ -22,14 +22,19 @@ export default function Search({ city, setCity }) {
 
 const SearchContainer = styled.div`
   height: 25px;
-  width: 20%;
+  width: 30%;
   margin-top: 25px;
+  min-width: 360px;
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
 `
 const Input = styled.input`
   height: 25px;
   width: 80%;
+  min-width: 300px;
 `
 const Button = styled.button`
-  height: 20px;
-  width: 20%;
+  height: 25px;
+  min-width: 60px;
 `

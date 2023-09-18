@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 import Search from "../components/Search.jsx"
+import Weather from "../components/Weather.jsx"
 
 export default function HomePage({ city, setCity }) {
 
@@ -19,6 +20,7 @@ export default function HomePage({ city, setCity }) {
     <HomeContainer>
       <Title>Levo um casaquinho?</Title>
       <Search city={city} setCity={setCity} />
+      <Weather city={city} />
     </HomeContainer>
   )
 }
@@ -36,4 +38,6 @@ const Title = styled.h1`
   font-size: 50px;
   font-weight: bold;
   margin-top: 50px;
+  width: 100%;
+  text-align: center;
 `
