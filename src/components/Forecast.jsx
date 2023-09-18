@@ -3,6 +3,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 
 export default function Forecast({ forecast }) {
   const data = [];
+  const decimalPoint = 1;
 
   const formatarData = (timestamp) => {
     const data_hora = new Date(timestamp * 1000);
@@ -17,27 +18,31 @@ export default function Forecast({ forecast }) {
   forecast?.list.forEach((e) => {
     const dataObject = {
       name: formatarData(e.dt),
-      temp: Number(e.main.temp.toFixed(1)),
+      temp: Number(e.main.temp.toFixed(decimalPoint)),
     };
     data.push(dataObject);
   });
 
-  return (
+  return forecast ? (    
     <ForecastContainer>
-      <LineChart width={700} height={300} data={data}>
-        <Line type="monotone" dataKey="temp" stroke="#FF4500" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+      <div>
+          <LineChart width={500} height={300} data={data}>
+            <Line type="monotone" dataKey="temp" stroke="#FF4500" />
+            <CartesianGrid stroke="#ccc" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+          </LineChart>
+      </div>
     </ForecastContainer>
+  ) : (
+    <></>
   );
 }
 
 const ForecastContainer = styled.div`
-  height: 100px;
-  width: 100%;
+  height: auto;
+  width: 40%;
   margin-top: 25px;
   min-width: 360px;
   display: flex;

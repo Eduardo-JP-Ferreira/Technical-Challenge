@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react'
 
-export default function Weather({ city, weather }) {
-  const [input, setInput] = useState("")
+export default function Weather({ weather }) {
   const decimalPoint = 1;
 
   const weatherMapping = {
@@ -22,7 +20,6 @@ export default function Weather({ city, weather }) {
 
   return (
     <WeatherContainer style={{ backgroundColor: conditionInfo.backgroundColor }}>
-      {console.log('weather', weather)}
       <LeftContainer>
         <h1>Agora: {`${weather?.name}`}</h1>
         <h2>Mínima: {`${weather?.main.temp_min.toFixed(decimalPoint)}°C`}</h2>
@@ -38,7 +35,7 @@ export default function Weather({ city, weather }) {
 
 const WeatherContainer = styled.div`
   height: 100px;
-  width: 50%;
+  width: 40%;
   margin-top: 25px;
   min-width: 360px;
   border-radius: 15px;
@@ -66,7 +63,7 @@ const LeftContainer = styled.div`
 const RightContainer = styled.div`
   height: 100%;
   width: 50%;
-  min-width: 180px;
+  min-width: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;

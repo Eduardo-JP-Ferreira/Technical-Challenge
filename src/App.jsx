@@ -6,6 +6,7 @@ function App() {
   const [city, setCity] = useState()
   const [weather, setWeather] = useState()
   const [forecast, setForecast] = useState()
+
   return (
     <PageContainer>
      <BrowserRouter>
@@ -18,11 +19,10 @@ function App() {
 }
 
 const PageContainer = styled.main`
-  /* background-color: black;
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center; */
+  align-items: center;
 `
 export default App

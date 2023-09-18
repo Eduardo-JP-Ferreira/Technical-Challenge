@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
         font-style: normal;
         font-weight: 400;
     }
-
 `
 
 export default GlobalStyle

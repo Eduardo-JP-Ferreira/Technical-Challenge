@@ -6,23 +6,19 @@ export default function Search({ city, setCity, setWeather, setForecast }) {
   const [inputCity, setInputCity] = useState()
   
   function submit(event) {
-    console.log('clique: ', inputCity)
     event.preventDefault();
     setCity(`${inputCity}`)
 
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&units=metric&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}`)
       .then((res) => {
-        console.log(res.data)
         setWeather(res.data)
       })
-      .catch((err) => alert("error"))
+      .catch((err) => alert("error: Insira uma cidade válida"))
     axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity}&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}&units=metric`)
       .then((res) => {
-        console.log("forcast",res.data)
         setForecast(res.data)
       })
-      .catch((err) => console.log("error", err.message))
-    console.log('clique2: ', city)
+      .catch((err) => alert("error: Insira uma cidade válida"))
   }
 
   return (
@@ -42,7 +38,6 @@ const SearchContainer = styled.div`
   min-width: 360px;
   display: flex;
   justify-content: center;
-  background-color: lightblue;
 `
 const Input = styled.input`
   height: 25px;
