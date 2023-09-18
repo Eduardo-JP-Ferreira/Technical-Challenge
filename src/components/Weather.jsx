@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 import { useState } from 'react'
 
-export default function Weather({ city }) {
+export default function Weather({ city, weather }) {
   const [input, setInput] = useState("")
 
   return (
     <WeatherContainer>
+      {console.log('weather', weather)}
       <LeftContainer>
-        <h1>Agora: {`London`}</h1>
-        <h2>Mínima: {`15.8°C`}</h2>
-        <h2>Máxima: {`24.2°C`}</h2>
+        <h1>Agora: {`${weather?.name}`}</h1>
+        <h2>Mínima: {`${weather?.main.temp_min}°C`}</h2>
+        <h2>Máxima: {`${weather?.main.temp_max}°C`}</h2>
       </LeftContainer>
       <RightContainer>
-        <h2>{`Nublado`}</h2>
-        <h1>{`18,2°C`}</h1>
+        <h2>{`${weather?.weather[0].main}`}</h2>
+        <h1>{`${weather?.main.temp}°C`}</h1>
       </RightContainer>
     </WeatherContainer>     
   )

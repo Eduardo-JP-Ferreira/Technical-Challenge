@@ -5,7 +5,7 @@ import axios from "axios"
 import Search from "../components/Search.jsx"
 import Weather from "../components/Weather.jsx"
 
-export default function HomePage({ city, setCity }) {
+export default function HomePage({ city, setCity, weather, setWeather }) {
 
   useEffect(() => {
     // axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo&appid=${import.meta.env.VITE_REACT_APP_WEATHER_API_KEY}`)
@@ -19,8 +19,8 @@ export default function HomePage({ city, setCity }) {
   return (
     <HomeContainer>
       <Title>Levo um casaquinho?</Title>
-      <Search city={city} setCity={setCity} />
-      <Weather city={city} />
+      <Search city={city} setCity={setCity} setWeather={setWeather}/>
+      <Weather city={city} weather={weather} />
     </HomeContainer>
   )
 }
