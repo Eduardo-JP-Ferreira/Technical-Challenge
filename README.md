@@ -10,6 +10,7 @@ Technical-Challenge is a simple webpage where, from the name of a city, current 
 <img src="https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black" alt='React'/>
 <img src="https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white"/>
 <img src="https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=white"/>
 </p>
 
 ## Web Acess
@@ -17,6 +18,23 @@ Technical-Challenge is a simple webpage where, from the name of a city, current 
 You can access and use the app without installation from the link below.
 ```
 https://technical-challenge-blue.vercel.app/
+```
+
+## Using with Docker
+
+You can acess the app image at Docker Hub from the link below.
+```
+https://hub.docker.com/r/edudevpires/technical-challenge
+```
+
+You can pull the app image from DockerHub using the code below.
+```
+docker pull edudevpires/technical-challenge
+```
+
+You can run the app image on your local machine using the code below.
+```
+docker run -p 8080:80 edudevpires/technical-challenge
 ```
 
 ## How to run for development
