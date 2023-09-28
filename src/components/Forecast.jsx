@@ -1,9 +1,26 @@
 import styled from 'styled-components';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import React, { useState, useEffect } from 'react';
 
 export default function Forecast({ forecast }) {
   const data = [];
   const decimalPoint = 1;
+
+  const [chartWidth, setChartWidth] = useState(500);
+  const minWidth = 400;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth(Math.max(window.innerWidth * 0.4, minWidth));
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const formatarData = (timestamp) => {
     const data_hora = new Date(timestamp * 1000);
@@ -26,7 +43,7 @@ export default function Forecast({ forecast }) {
   return forecast ? (    
     <ForecastContainer>
       <div>
-          <LineChart width={500} height={300} data={data}>
+          <LineChart width={chartWidth} height={300} data={data} margin={{ top: 5, right: 30, left: -30, bottom: 0 }}>
             <Line type="monotone" dataKey="temp" stroke="#FF4500" />
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="name" />
@@ -46,7 +63,10 @@ const ForecastContainer = styled.div`
   margin-top: 25px;
   min-width: 360px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   font-size: 12px;
   font-family: "Times New Roman", serif;
+  @media (max-width: 500px) {
+    overflow-x: scroll;
+  }
 `;
